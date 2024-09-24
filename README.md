@@ -9,6 +9,22 @@ This is a Laravel-based API for a shop listing system in Greece. It supports use
 3. [Database Seeding](#database-seeding)
 4. [Testing API Endpoints](#testing-api-endpoints)
 
+## Database Management
+
+### Importing the Database Dump
+
+If you want to import the database structure and initial data:
+
+1. Create a new MySQL database for the project (if not already created).
+
+2. Import the SQL dump:
+   ```bash
+   mysql -u your_username -p your_database_name < database_dump.sql
+   ```
+   Replace `your_username` with your MySQL username and `your_database_name` with the name of your database.
+
+3. Update your `.env` file with the correct database credentials.
+
 ## Setup
 
 To set up this project from scratch, follow these steps:
