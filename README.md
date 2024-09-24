@@ -79,7 +79,8 @@ To test the API endpoints of this application, you can use various tools and met
    - [Insomnia](https://insomnia.rest/download)
    - cURL (command-line tool)
 
-## IMPORTANT: Inside the folder postman-requests you can find a collection of requests that you can import in postman to test the api.
+## IMPORTANT
+### Inside the folder `postman-requests` you can find a collection of requests that you can import in postman to test the api.
 
 ### Available Endpoints
 
