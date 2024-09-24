@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Offer;
+use App\Models\ShopOwner;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\NewOfferNotification;
 
 class OfferController extends Controller
 {

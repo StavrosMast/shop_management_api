@@ -25,8 +25,15 @@ class ShopController extends Controller
             'address' => 'nullable|string',
         ]);
 
-        $shop = Shop::create($request->all());
-        return response()->json($shop, 201);
+        try {
+            $shop = Shop::create($request->all());
+            return response()->json($shop, 201);
+        } catch (\Exception $e) {
+            return response()->json([
+                'message' => 'Failed to create shop',
+                'error' => $e->getMessage()
+            ], 500);
+        }
     }
 
     public function show(Shop $shop)

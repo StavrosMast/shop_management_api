@@ -1,66 +1,208 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Shop Listing API
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+This is a Laravel-based API for a shop listing system in Greece. It supports user management (shop owners), shop management, and email notifications when a new offer is created.
 
-## About Laravel
+## Table of Contents
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+1. [Setup](#setup)
+2. [Running the Application](#running-the-application)
+3. [Database Seeding](#database-seeding)
+4. [Testing API Endpoints](#testing-api-endpoints)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Setup
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+To set up this project from scratch, follow these steps:
 
-## Learning Laravel
+1. Clone the repository:
+   ```
+   git clone https://github.com/your-username/shop-listing-api.git
+   cd shop-listing-api
+   ```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+2. Install PHP dependencies:
+   ```
+   composer install
+   ```
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+3. Create a copy of the `.env.example` file and rename it to `.env`:
+   ```
+   cp .env.example .env
+   ```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+4. Generate an application key:
+   ```
+   php artisan key:generate
+   ```
 
-## Laravel Sponsors
+5. Configure your database in the `.env` file:
+   ```
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=your_database_name
+   DB_USERNAME=your_database_username
+   DB_PASSWORD=your_database_password
+   ```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+6. Run database migrations:
+   ```
+   php artisan migrate
+   ```
 
-### Premium Partners
+## Running the Application
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+1. Start your MySQL server.
 
-## Contributing
+2. Run the Laravel development server:
+   ```
+   php artisan serve
+   ```
+   This will start the server, typically at `http://127.0.0.1:8000` or `http://localhost:8000`.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Database Seeding
 
-## Code of Conduct
+To populate your database with initial data (like shop categories), run:
+```
+php artisan db:seed
+```
+This will run all seeders defined in `database/seeders/DatabaseSeeder.php`.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Testing API Endpoints
 
-## Security Vulnerabilities
+To test the API endpoints of this application, you can use various tools and methods. Here's a guide:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### Prerequisites
 
-## License
+1. Ensure the Laravel development server is running (`php artisan serve`).
+2. Have a tool ready for making HTTP requests.
+   - [Postman](https://www.postman.com/downloads/) (recommended)
+   - [Insomnia](https://insomnia.rest/download)
+   - cURL (command-line tool)
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+###IMPORTANT: Inside the folder postman-requests you can find a collection of requests that you can import in postman to test the api.
+
+### Available Endpoints
+
+#### Authentication
+
+1. Register a new shop owner:
+   - Method: POST
+   - URL: `http://127.0.0.1:8000/api/register`
+   - Body (JSON):
+     ```json
+     {
+       "name": "John Doe",
+       "email": "john@example.com",
+       "password": "password123"
+     }
+     ```
+
+2. Login:
+   - Method: POST
+   - URL: `http://127.0.0.1:8000/api/login`
+   - Body (JSON):
+     ```json
+     {
+       "email": "john@example.com",
+       "password": "password123"
+     }
+     ```
+
+#### Shops (Requires Authentication)
+
+3. Create a new shop:
+   - Method: POST
+   - URL: `http://127.0.0.1:8000/api/shops`
+   - Headers: 
+     - `Authorization: Bearer {your_access_token}`
+   - Body (JSON):
+     ```json
+     {
+       "name": "My Shop",
+       "shop_owner_id": 1,
+       "shop_category_id": 1,
+       "description": "A great shop",
+       "open_hours": "9-5",
+       "city": "Athens",
+       "address": "123 Main St"
+     }
+     ```
+
+4. Get all shops:
+   - Method: GET
+   - URL: `http://127.0.0.1:8000/api/shops`
+
+5. Get a specific shop:
+   - Method: GET
+   - URL: `http://127.0.0.1:8000/api/shops/{shop_id}`
+
+6. Update a shop:
+   - Method: PUT
+   - URL: `http://127.0.0.1:8000/api/shops/{shop_id}`
+   - Headers: 
+     - `Authorization: Bearer {your_access_token}`
+   - Body (JSON): Include the fields you want to update
+
+7. Delete a shop:
+   - Method: DELETE
+   - URL: `http://127.0.0.1:8000/api/shops/{shop_id}`
+   - Headers: 
+     - `Authorization: Bearer {your_access_token}`
+
+#### Offers (Requires Authentication)
+
+8. Create a new offer:
+   - Method: POST
+   - URL: `http://127.0.0.1:8000/api/offers`
+   - Headers: 
+     - `Authorization: Bearer {your_access_token}`
+   - Body (JSON):
+     ```json
+     {
+       "name": "Summer Sale",
+       "description": "50% off on all items",
+       "shop_id": 1
+     }
+     ```
+
+9. Get all offers:
+   - Method: GET
+   - URL: `http://127.0.0.1:8000/api/offers`
+   - Headers: 
+     - `Authorization: Bearer {your_access_token}`
+
+10. Get a specific offer:
+    - Method: GET
+    - URL: `http://127.0.0.1:8000/api/offers/{offer_id}`
+    - Headers: 
+      - `Authorization: Bearer {your_access_token}`
+
+11. Update an offer:
+    - Method: PUT
+    - URL: `http://127.0.0.1:8000/api/offers/{offer_id}`
+    - Headers: 
+      - `Authorization: Bearer {your_access_token}`
+    - Body (JSON): Include the fields you want to update
+
+12. Delete an offer:
+    - Method: DELETE
+    - URL: `http://127.0.0.1:8000/api/offers/{offer_id}`
+    - Headers: 
+      - `Authorization: Bearer {your_access_token}`
+
+### Testing Process
+
+1. First register a new shop owner using the register endpoint.
+2. Log in using the login endpoint to obtain an access token.
+3. Use this access token in the `Authorization` header for requests that require authentication.
+4. Test each endpoint by sending requests with the appropriate method, URL, headers, and body data in JSON format.
+5. Verify the responses to ensure they match the expected format and data.
+
+### Notes
+
+- Replace `{your_access_token}` with the actual token received from the login response.
+- Replace `{shop_id}` and `{offer_id}` with actual IDs when testing specific shop or offer endpoints.
+- Ensure you have the necessary permissions (i.e., you're the owner of the shop) when modifying shop or offer data.
+- The API uses JSON for request and response bodies. Set the `Content-Type: application/json` header when sending data in the request body.
+
+For any issues or unexpected behaviors, check the Laravel log file located at `storage/logs/laravel.log` for detailed error messages.
